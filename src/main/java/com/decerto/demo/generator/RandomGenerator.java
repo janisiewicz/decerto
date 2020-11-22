@@ -2,7 +2,6 @@ package com.decerto.demo.generator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -12,13 +11,12 @@ import java.util.Random;
 public class RandomGenerator implements DataGenerator<Integer> {
 
     private final Random random;
-
-    @Value("${random.max}")
-    private int maxValue;
+    private final Integer maxValue;
 
     @Autowired
-    public RandomGenerator(Random random) {
+    public RandomGenerator(Random random, Integer maxValue) {
         this.random = random;
+        this.maxValue = maxValue;
     }
 
     @Override

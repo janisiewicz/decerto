@@ -1,7 +1,7 @@
 package com.decerto.demo.generator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -9,8 +9,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Qualifier("rest")
 public class RestGenerator implements DataGenerator<Integer> {
 
-    @Value("${rest.uri}")
-    private String uri;
+    private final String uri;
+
+    @Autowired
+    public RestGenerator(String uri) {
+        this.uri = uri;
+    }
 
     @Override
     public Integer generate() {

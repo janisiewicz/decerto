@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RandomGeneratorTest {
 
-    private static int MAX_VALUE = 33;
+    private static final int MAX_VALUE = 33;
 
     @Test
-    public void randomGeneratorShouldWorks() throws Exception {
+    public void randomGeneratorShouldWorks() {
         //given
-        RandomGenerator randomGenerator = new RandomGenerator(new DeterministicRandomGenerator(MAX_VALUE));
+        RandomGenerator randomGenerator = new RandomGenerator(new DeterministicRandomGenerator(), MAX_VALUE);
         //when
         int result = randomGenerator.generate();
         //then
@@ -22,16 +22,10 @@ public class RandomGeneratorTest {
     }
 
 
-    private class DeterministicRandomGenerator extends Random {
-
-        private final int maxValue;
-
-        private DeterministicRandomGenerator(int maxValue) {
-            this.maxValue = maxValue;
-        }
+    private static class DeterministicRandomGenerator extends Random {
 
         public int nextInt(final int bound) {
-            return maxValue;
+            return MAX_VALUE;
         }
     }
 }
