@@ -3,31 +3,30 @@ package com.decerto.demo.generator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
 
 @Component
 @Qualifier("rest")
 public class RestGenerator implements DataGenerator<Integer> {
 
     private final String uri;
+    private final WebClientFacade webClientFacade;
 
     @Autowired
-    public RestGenerator(String uri) {
+    public RestGenerator(String uri, WebClientFacade webClientFacade) {
         this.uri = uri;
+        this.webClientFacade = webClientFacade;
     }
 
     @Override
     public Integer generate() {
+        String response = webClientFacade.getResponse(uri);
+        return convertToInt(response);
+    }
 
-        String result = WebClient
-                .builder()
-                .baseUrl(uri)
-                .build()
-                .get()
-                .retrieve()
-                .bodyToMono(String.class)
-                .block()
-                .trim();
-        return Integer.valueOf(result);
+    private Integer convertToInt(String response) {
+        if(response != null) {
+            response = response.trim();
+            return Integer.valueOf(response);
+        } else return 0;
     }
 }

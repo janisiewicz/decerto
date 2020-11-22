@@ -7,5 +7,5 @@ import java.util.function.BinaryOperator;
 
 public interface DataConnector<T> {
 
-    public Optional<T> connect(BinaryOperator<T> operation, DataGenerator<T>... generators);
+    Optional<T> connect(BinaryOperator<T> operation, DataGenerator<T>... generators);
 }
