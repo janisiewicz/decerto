@@ -1,19 +1,17 @@
 package com.decerto.demo.generator;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
-@Qualifier("date")
-public class DayOfTheMonthGenerator implements DataGenerator<Integer> {
+public class DayOfTheMonthGenerator extends AbstractGenerator implements DataGenerator<Integer> {
 
+    private final static String CODE = "MTH";
     private final LocalDate localDate;
 
-    @Autowired
     public DayOfTheMonthGenerator(final LocalDate localDate) {
+        super(CODE);
         this.localDate = localDate;
     }
 

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.util.Random;
 
 @Configuration
-public class MyConfiguration {
+public class DefaultConfiguration {
 
     @Value("${rest.uri}")
     private String uri;

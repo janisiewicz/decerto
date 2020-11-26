@@ -1,9 +1,8 @@
 package com.decerto.demo;
 
-import com.decerto.demo.generator.DataGenerator;
+import com.decerto.demo.generator.DayOfTheMonthGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DayOfTheMonthGeneratorIT {
 
     @Autowired
-    @Qualifier("date")
-    private DataGenerator<Integer> generator;
+    private DayOfTheMonthGenerator generator;
 
     @Test
     public void dayOfTheMonthShouldWorks() throws Exception {

@@ -1,18 +1,16 @@
 package com.decerto.demo.generator;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("rest")
-public class RestGenerator implements DataGenerator<Integer> {
+public class RestGenerator extends AbstractGenerator implements DataGenerator<Integer> {
 
+    private final static String CODE = "RST";
     private final String uri;
     private final WebClientFacade webClientFacade;
 
-    @Autowired
     public RestGenerator(String uri, WebClientFacade webClientFacade) {
+        super(CODE);
         this.uri = uri;
         this.webClientFacade = webClientFacade;
     }

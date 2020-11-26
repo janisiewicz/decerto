@@ -1,11 +1,13 @@
 package com.decerto.demo.connector;
 
 import com.decerto.demo.generator.DataGenerator;
+import com.decerto.demo.operator.DataOperator;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.function.BinaryOperator;
 
 public interface DataConnector<T> {
 
-    Optional<T> connect(BinaryOperator<T> operation, DataGenerator<T>... generators);
+    Optional<T> connect(List<DataOperator<T>> dataOperatorList, List<DataGenerator<T>> generators);
+    String getCode();
 }
